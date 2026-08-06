@@ -30,6 +30,7 @@ STRICT EXTRACTION RULES:
 10. IDENTITY NUMBER (CCCD): Extract ONLY numeric digits. Ignore handwritten names or signatures near the CCCD column.
 11. NO OCR ENGINE HAS BEEN USED: You are reading the PDF pages visually and structurally. Ensure highest fidelity.
 12. ISSUING ORGANIZATION (don_vi_cap_bang): Always default or extract as "Đại học Đà Nẵng".
+13. PLACE OF ISSUANCE (noi_cap): Nơi cấp giấy CCCD/CMND thường là tỉnh/thành phố ở Việt Nam (bao gồm các tỉnh trước khi sáp nhập/thay đổi địa giới hành chính). Thường có tiền tố "CA" (viết tắt của "Công An") đứng trước tên Tỉnh (ví dụ: "CA Quảng Nam", "CA Đà Nẵng", "CA Hà Nội", "CA TPHCM", "CA Thừa Thiên Huế"...). LƯU Ý QUAN TRỌNG: Nơi cấp thường trùng hoặc tương ứng với Nơi sinh (noi_sinh). Nếu phần chữ nơi cấp bị viết tắt hoặc mờ, hãy tham khảo Nơi sinh (noi_sinh) để nhận diện chính xác tên Tỉnh/CA Tỉnh cấp.
 
 REQUIRED JSON FORMAT (RETURN ONLY VALID RAW JSON, NO MARKDOWN, NO EXPLANATION, NO TRIPLE BACKTICKS):
 {
@@ -78,6 +79,7 @@ Audit and verify the candidate JSON against the original document slice.
 - Verify date formats (must be DD/MM/YYYY or YYYY).
 - Check decision_number (numeric only) and decision_date.
 - Ensure gender is "Nam" or "Nữ" and nationality does NOT contain ethnicity (e.g. "Việt Nam").
+- Verify place of issuance (noi_cap): ensure proper prefixing (e.g. "CA [Tỉnh]") and cross-reference with place of birth (noi_sinh) if abbreviated.
 - Correct values ONLY when there is clear, explicit visual proof in the document.
 - NEVER hallucinate or guess. If uncertain, leave as "".
 
